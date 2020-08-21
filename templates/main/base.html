@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> {% block title %}{% endblock title %} </title>
+        <link type="text/css" rel="stylesheet" href="{% static 'main/css/base.css' %}">
+    </head>
+    <body>
+        <div class="navbar">
+            <h2 class="text-danger">
+                Django Authentication 
+                <a href="{% static 'core/img/betta.jpg' %}">
+                    <img src="{% static 'core/img/betta.jpg' %}" width="40px" alt="betta fish">
+                </a>
+            </h2>
+        </div>
+        <main>
+            {% block content %}
+            
+            {% endblock content %}
+        </main>
+        <footer>
+            copyright &copy; 2020 | All rights reserved
+        </footer>
+
+    </body>
+</html>

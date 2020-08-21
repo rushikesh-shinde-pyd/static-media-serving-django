@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} Homepage {% endblock title %}
+
+{% block content %}
+    <fieldset>
+        <legend><h2>Upload new fish</h2></legend>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% for each in forms.errors %}
+                <p class="text-danger"> {{ each }} </p> 
+            {% empty %}
+            
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </fieldset>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fish in fishes %}
+                <tr>
+                    <td>{{ fish.name | title}}</td>
+                    <td>
+                        <a href="{{ fish.photo.url }}">
+                            <img src="{{ fish.photo.url }}" width="120px" alt="{{ fish.photo.name }}">
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="2"> No fishes </td></tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+{% endblock content %}
